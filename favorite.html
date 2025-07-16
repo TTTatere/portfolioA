@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ホバー時の画像スタイル */
+    .hover-img {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .hover-img:hover {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+
+    /* 横に広がる白いオーバーレイ */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: #fff;
+      z-index: 9999;
+      transition: width 0.6s ease-in-out;
+    }
+
+    .overlay.active {
+      width: 100%;
+    }
+
+    /* 中央寄せ用 */
+    .centered {
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <header>
+      <nav>
+        <h1>Portfolio</h1>
+        <ul>
+          <li><a href="home.html">HOME</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="favorite.html">FAVORITE</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="centered">
+      <!-- data-url 付き画像たち -->
+      <img class="hover-img" src="FAVORITE/drink.jpg" alt="drink" data-url="https://products.suntory.co.jp/d/4901777231672/">
+      <img class="hover-img" src="FAVORITE/restrant.jpg" alt="restaurant" data-url="https://tabelog.com/fukuoka/A4004/A400404/40001173/">
+      <img class="hover-img" src="FAVORITE/donut.jpg" alt="donut"> <!-- 遷移なし（クリックしても何も起きない） -->
+      <img class="hover-img" src="FAVORITE/artist.jpg" alt="artist" data-url="FAVORITE/style.html">
+    </div>
+
+    <!-- オーバーレイ -->
+    <div class="overlay" id="overlay"></div>
+  </div>
+
+  <script>
+    // すべての画像にイベント追加
+    const images = document.querySelectorAll('.hover-img');
+    const overlay = document.getElementById('overlay');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const url = img.getAttribute('data-url');
+
+        if (url) {
+          overlay.classList.add('active');
+          setTimeout(() => {
+            window.open(url, '_blank'); // 新しいタブで開く
+          }, 700); // アニメーションに合わせる
+        }
+      });
+    });
+  </script>
+</body>
+</html>

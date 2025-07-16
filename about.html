@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=debice-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div id="wrap">
+        <header>
+            <nav>
+                <h1>Portfolio</h1>
+                <nav>
+                <ul>
+                  <li><a href="home.html">HOME</a></li>
+                  <li><a href="about.html">ABOUT</a></li>
+                  <li><a href="favorite.html">FAVORITE</a></li>
+                 
+                </ul>
+                </nav>
+                <div class="main-visual">
+             
+                </div>
+            </nav>
+        </header>
+    
+        <main>
+         <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>紙をめくる（スマホ対応）</title>
+  <p1>左右にスライドでめくる</p1>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #eee;
+      margin: 0;
+      touch-action: none; /* スクロールを防ぐ */
+    }
+
+    .book {
+      width: 900px;
+      height: 550px;
+      perspective: 1000px;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      cursor: grab;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      backface-visibility: hidden;
+    }
+
+    .page::before {
+      background-image: url('images/meishiomote.png'); /* 表面 */
+    }
+
+    .page::after {
+      background-image: url('images/meishiura.png');  /* 裏面 */
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book">
+    <div class="page" id="page"></div>
+  </div>
+
+  <script>
+    const page = document.getElementById('page');
+    let isDragging = false;
+    let startX = 0;
+    let currentRotation = 0;
+
+    // 座標取得（マウス・タッチ共通）
+    function getClientX(e) {
+      return e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function startDrag(e) {
+      isDragging = true;
+      startX = getClientX(e);
+      page.style.transition = 'none';
+    }
+
+    function moveDrag(e) {
+      if (!isDragging) return;
+      const deltaX = getClientX(e) - startX;
+      let angle = deltaX / 2;
+      angle = Math.max(0, Math.min(180, currentRotation + angle));
+      page.style.transform = `rotateY(${angle}deg`;
+    }
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      const deltaX = getClientX(e) - startX;
+      currentRotation += deltaX / 2;
+
+      if (currentRotation > 90) {
+        currentRotation = 180;
+      } else {
+        currentRotation = 0;
+      }
+
+      page.style.transition = 'transform 0.5s ease';
+      page.style.transform = `rotateY(${currentRotation}deg)`;
+    }
+
+    // マウスイベント
+    page.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', endDrag);
+
+    // タッチイベント（スマホ）
+    page.addEventListener('touchstart', startDrag);
+    window.addEventListener('touchmove', moveDrag);
+    window.addEventListener('touchend', endDrag);
+  </script>
+</body>
+</html>
+
+          <h2></h2>
+          <p2></p2>
+        </main>
+      
