@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ホバー時の画像スタイル */
+ 
     .hover-img {
       transition: transform 0.3s ease, opacity 0.3s ease;
       cursor: pointer;
@@ -18,7 +18,6 @@
       opacity: 0.8;
     }
 
-    /* 横に広がる白いオーバーレイ */
     .overlay {
       position: fixed;
       top: 0;
@@ -59,7 +58,7 @@
       <!-- data-url 付き画像たち -->
       <img class="hover-img" src="FAVORITE/drink.jpg" alt="drink" data-url="https://products.suntory.co.jp/d/4901777231672/">
       <img class="hover-img" src="FAVORITE/restrant.jpg" alt="restaurant" data-url="https://tabelog.com/fukuoka/A4004/A400404/40001173/">
-      <img class="hover-img" src="FAVORITE/donut.jpg" alt="donut"> <!-- 遷移なし（クリックしても何も起きない） -->
+      <img class="hover-img" src="FAVORITE/donut.jpg" alt="donut"> 
       <img class="hover-img" src="FAVORITE/artist.jpg" alt="artist" data-url="FAVORITE/style.html">
     </div>
 
@@ -68,7 +67,7 @@
   </div>
 
   <script>
-    // すべての画像にイベント追加
+
     const images = document.querySelectorAll('.hover-img');
     const overlay = document.getElementById('overlay');
 
